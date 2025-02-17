@@ -5,3 +5,4 @@ integration of reddit / video downloader / instagram uploader -done
 for loop file upload count - done
 integrate git -done
 delete media folder - completed
+last_run tracker- done

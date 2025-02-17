@@ -12,6 +12,3 @@ def delete_folder_contents(folder_path):
         elif os.path.isdir(file_path):
             shutil.rmtree(file_path)  # Delete the directory and its contents
 
-folder_path = "media/"
-delete_folder_contents(folder_path)
-print("Folder contents deleted.")

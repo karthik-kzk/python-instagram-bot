@@ -1,5 +1,7 @@
 from instagrapi import Client
+from createFolder import createFolder
 from delete_folder_contents import delete_folder_contents
+from last_run import  last_run_today, update_last_run
 from redditScraper import redditScraper
 from videoDownloader import videoDownloader
 import sys
@@ -8,7 +10,14 @@ import json
 from dotenv import load_dotenv
 load_dotenv()
 
+if last_run_today():
+    print("already run today")
+    sys.exit()
+
+# sys.exit()
+
 folder_path = "media/"
+createFolder(folder_path)
 delete_folder_contents(folder_path)
 
 
@@ -28,12 +37,14 @@ INSTAGRAM_USERNAME=os.getenv('INSTAGRAM_USERNAME')
 INSTAGRAM_PASSWORD=os.getenv('INSTAGRAM_PASSWORD')
 cl.login(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD)
 
-# user_id = cl.user_id_from_username(ACCOUNT_USERNAME)
+
 for index, post in enumerate(topPost, start=1):
     cl.clip_upload(
     f"media/{post["title"]}.mp4",    
     f"{post["title"]}"    
 )
     print(f"Upload {index} / {len(topPost)}")
+    
+update_last_run()
 
-    # media.dict()
+   
