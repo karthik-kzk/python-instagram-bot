@@ -1,0 +1,21 @@
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore virtual environment
+venv/
+.env
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and database files
+logs/
+*.sqlite3
+
+# Ignore dependencies
+node_modules/
+media/
+top_posts_reddit.json
