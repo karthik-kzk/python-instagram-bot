@@ -19,3 +19,4 @@ logs/
 node_modules/
 media/
 top_posts_reddit.json
+errors.log
