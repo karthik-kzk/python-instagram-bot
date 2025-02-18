@@ -25,7 +25,7 @@ reddit = praw.Reddit(client_id=client_id,
                      user_agent=user_agent)
 
 # Define the subreddit and time filter (top posts in the last day)
-subreddit_name = "funnyvideos"
+subreddit_name = os.getenv('SUBREDDIT_NAME')
 time_filter = "day"  # Options: "hour", "day", "week", "month", "year", "all"
 limit = 5
 
@@ -42,7 +42,7 @@ def redditScraper(time_filter, outputArrayLimit, fetchPostLimit):
     top_posts = []
     for post in subreddit.top(time_filter, limit=fetchPostLimit):
         # Exclude adult content
-        if not post.over_18 and len(top_posts) < outputArrayLimit :
+        if not post.over_18 and len(top_posts) < outputArrayLimit and post.is_video:
             post_data = {
                 "title": post.title,
                 "url": post.url,
@@ -52,10 +52,10 @@ def redditScraper(time_filter, outputArrayLimit, fetchPostLimit):
                 "comments": post.num_comments
             }
             top_posts.append(post_data)
-            
+
     print("topPost", len(top_posts), fetchPostLimit)
-    if len(top_posts) == outputArrayLimit:
-        
+    if len(top_posts) == outputArrayLimit or fetchPostLimit>30:
+
         with open(f"top_posts_reddit.json", "w", encoding="utf-8") as json_file:
             json.dump(top_posts, json_file, indent=4)
         print("Top posts saved to JSON file!")
