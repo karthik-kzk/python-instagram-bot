@@ -16,7 +16,6 @@ logs/
 *.sqlite3
 
 # Ignore dependencies
-node_modules/
 media/
 top_posts_reddit.json
 errors.log
