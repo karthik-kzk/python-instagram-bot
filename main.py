@@ -29,10 +29,10 @@ topPost = redditScraper(time_filter, outputArrayLimit, fetchPostLimit)
 # sys.exit()
 for index, post in enumerate(topPost, start=1):
     try:
-        videoDownloader(post)
-        print(f"Downloaded {index} / {len(topPost)}")
+        videoDownloader(post)        
     except Exception as e:
-        logError(e)    
+        logError(e)
+    print(f"Downloaded {index} / {len(topPost)}")
     
 
 # sys.exit()
@@ -48,10 +48,10 @@ for index, post in enumerate(topPost, start=1):
         cl.clip_upload(
             f"media/{post["title"]}.mp4",
             f"{post["title"]}"
-        )
-        print(f"Uploaded {index} / {len(topPost)}")
+        )        
     except Exception as e:
         logError(e)
+    print(f"Uploaded {index} / {len(topPost)}")
 
     
 
