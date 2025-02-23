@@ -20,7 +20,7 @@ def login_user():
     """
 
     cl = Client()
-    
+    cl.delay_range = [1, 3]
     login_via_session = False
     login_via_pw = False
     
