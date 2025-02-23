@@ -20,3 +20,4 @@ media/
 top_posts_reddit.json
 errors.log
 tracker.json
+session.json

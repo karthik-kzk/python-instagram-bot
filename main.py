@@ -3,6 +3,7 @@ from createFolder import createFolder
 from delete_folder_contents import delete_folder_contents
 from last_run import last_run_today, update_last_run
 from logger import logError
+from login import login_user
 from redditScraper import redditScraper
 from videoDownloader import videoDownloader
 import sys
@@ -36,11 +37,8 @@ for index, post in enumerate(topPost, start=1):
     
 
 # sys.exit()
-cl = Client()
-
-INSTAGRAM_USERNAME = os.getenv('INSTAGRAM_USERNAME')
-INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
-cl.login(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD)
+# login instagram user
+cl = login_user()
 
 
 for index, post in enumerate(topPost, start=1):
