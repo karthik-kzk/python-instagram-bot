@@ -32,7 +32,7 @@ for val in no_of_accounts:
     session_file=f"session{val}.json"
     
     time_filter = "day"  # Options: "hour", "day", "week", "month", "year", "all"
-    outputArrayLimit = 1
+    outputArrayLimit = 10
     fetchPostLimit = 10
     topPost = redditScraper(time_filter, outputArrayLimit,
                             fetchPostLimit, subreddit_name)
