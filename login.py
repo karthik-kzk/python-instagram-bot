@@ -4,16 +4,15 @@ import logging
 import sys
 import os
 import json
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 logger = logging.getLogger()
 
-INSTAGRAM_USERNAME = os.getenv('INSTAGRAM_USERNAME')
-INSTAGRAM_PASSWORD = os.getenv('INSTAGRAM_PASSWORD')
 
 
-def login_user():
+
+def login_user(INSTAGRAM_USERNAME,INSTAGRAM_PASSWORD,session_file):
     """
     Attempts to login to Instagram using either the provided session information
     or the provided username and password.
@@ -24,9 +23,10 @@ def login_user():
     login_via_session = False
     login_via_pw = False
     
+    session_file_path = f"session/{session_file}"
     
-    if os.path.exists("session.json"):
-        session = cl.load_settings("session.json")
+    if os.path.exists(session_file_path):
+        session = cl.load_settings(session_file_path)
         if session:
             try:
                 cl.set_settings(session)
@@ -57,7 +57,7 @@ def login_user():
             logger.info(
                 "Attempting to login via username and password. username: %s" % INSTAGRAM_USERNAME)
             if cl.login(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD):              
-                cl.dump_settings("session.json")
+                cl.dump_settings(session_file_path)
                 print("userName")
                 login_via_pw = True
         except Exception as e:
