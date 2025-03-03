@@ -1,6 +1,7 @@
 from instagrapi import Client
 from createFolder import createFolder
 from delete_folder_contents import delete_folder_contents
+from is_internet_available import is_internet_available
 from last_run import last_run_today, update_last_run
 from logger import logError
 from login import login_user
@@ -12,10 +13,13 @@ import json
 from dotenv import load_dotenv
 load_dotenv()
 
-
+if not is_internet_available():
+    logError("internet not working")
+    sys.exit()
 
 if last_run_today():
     print("already run today")
+    logError("already run today")
     sys.exit()
 
 # sys.exit()
