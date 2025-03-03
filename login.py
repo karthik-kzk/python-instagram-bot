@@ -6,6 +6,7 @@ import os
 import json
 # from dotenv import load_dotenv
 # load_dotenv()
+from logger import logError
 
 logger = logging.getLogger()
 
@@ -49,7 +50,7 @@ def login_user(INSTAGRAM_USERNAME,INSTAGRAM_PASSWORD,session_file):
                 login_via_session = True
                 print("login_via_session ")
             except Exception as e:
-                logger.info(
+               logError(
                     "Couldn't login user using session information: %s" % e)
 
     if not login_via_session:
@@ -61,9 +62,10 @@ def login_user(INSTAGRAM_USERNAME,INSTAGRAM_PASSWORD,session_file):
                 print("userName")
                 login_via_pw = True
         except Exception as e:
-            logger.info(
+            logError(
                 "Couldn't login user using username and password: %s" % e)
 
     if not login_via_pw and not login_via_session:
+        logError("Couldn't login user with either password or session")
         raise Exception("Couldn't login user with either password or session")
     return cl

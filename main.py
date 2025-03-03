@@ -38,8 +38,12 @@ for val in no_of_accounts:
     time_filter = "day"  # Options: "hour", "day", "week", "month", "year", "all"
     outputArrayLimit = 10
     fetchPostLimit = 10
-    topPost = redditScraper(time_filter, outputArrayLimit,
+    try:
+       topPost = redditScraper(time_filter, outputArrayLimit,
                             fetchPostLimit, subreddit_name)
+    except Exception as e:
+        logError(e)
+        continue
     # sys.exit()
     for index, post in enumerate(topPost, start=1):
         try:
@@ -51,8 +55,11 @@ for val in no_of_accounts:
 
     # sys.exit()
     # login instagram user
-    cl = login_user(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD, session_file)
-
+    try:
+        cl = login_user(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD, session_file)
+    except Exception as e:
+        logError(e)
+        continue
 
     for index, post in enumerate(topPost, start=1):
         try:
