@@ -1,6 +1,7 @@
 from instagrapi import Client
 from createFolder import createFolder
 from delete_folder_contents import delete_folder_contents
+from ffmpegVersionCheck import ffmpeg_version_match
 from is_internet_available import is_internet_available
 from last_run import last_run_today, update_last_run
 from logger import logError
@@ -20,6 +21,11 @@ if not is_internet_available():
 if last_run_today():
     print("already run today")
     logError("already run today")
+    sys.exit()
+    
+if not ffmpeg_version_match():
+    print("ffmpeg version version mismatch")
+    logError("ffmpeg version version mismatch")
     sys.exit()
 
 # sys.exit()
