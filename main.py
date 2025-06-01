@@ -14,6 +14,9 @@ import json
 from dotenv import load_dotenv
 load_dotenv()
 
+
+# requires python 3.13.2 !important
+
 if not is_internet_available():
     logError("internet not working")
     sys.exit()
