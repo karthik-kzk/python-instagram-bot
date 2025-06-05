@@ -6,6 +6,7 @@ __pycache__/
 # Ignore virtual environment
 venv/
 .env
+myenv/
 
 # Ignore system files
 .DS_Store
