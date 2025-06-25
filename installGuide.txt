@@ -1,0 +1,8 @@
+   create a new virtual env
+   python -m venv myenv
+   
+   activate virtual environment
+   source myenv/bin/activate
+   
+   install requirements file
+   pip install -r requirements.txt
