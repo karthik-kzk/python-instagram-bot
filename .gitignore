@@ -21,3 +21,4 @@ media/
 session/
 top_posts_reddit.json
 errors.log
+cron.log

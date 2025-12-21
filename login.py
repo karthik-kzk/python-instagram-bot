@@ -57,10 +57,11 @@ def login_user(INSTAGRAM_USERNAME,INSTAGRAM_PASSWORD,session_file):
         try:
             logger.info(
                 "Attempting to login via username and password. username: %s" % INSTAGRAM_USERNAME)
-            if cl.login(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD):              
-                cl.dump_settings(session_file_path)
-                print("userName")
-                login_via_pw = True
+            print("Attempting to login via username and password. username: %s" % INSTAGRAM_USERNAME)            
+            cl.login(INSTAGRAM_USERNAME, INSTAGRAM_PASSWORD)            
+            cl.dump_settings(session_file_path)
+            logError("logged in via username")
+            login_via_pw = True
         except Exception as e:
             logError(
                 "Couldn't login user using username and password: %s" % e)

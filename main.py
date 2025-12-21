@@ -38,6 +38,7 @@ createFolder(folder_path)
 delete_folder_contents(folder_path)
 
 no_of_accounts = [1,2,3,4]
+
 for val in no_of_accounts:
     INSTAGRAM_USERNAME = os.getenv(f'INSTAGRAM_USERNAME_{val}')
     INSTAGRAM_PASSWORD = os.getenv(f'INSTAGRAM_PASSWORD_{val}')
@@ -46,7 +47,7 @@ for val in no_of_accounts:
     
     time_filter = "day"  # Options: "hour", "day", "week", "month", "year", "all"
     outputArrayLimit = 5
-    fetchPostLimit = 5
+    fetchPostLimit = 5    
     try:
        topPost = redditScraper(time_filter, outputArrayLimit,
                             fetchPostLimit, subreddit_name)
@@ -61,7 +62,9 @@ for val in no_of_accounts:
             logError(e)
         print(f"Downloaded {index} / {len(topPost)}")
         
-
+    print("before login")
+    if(not topPost or not os.listdir(folder_path)):
+        continue
     # sys.exit()
     # login instagram user
     try:
@@ -73,7 +76,7 @@ for val in no_of_accounts:
     for index, post in enumerate(topPost, start=1):
         try:
             cl.clip_upload(
-                f"media/{post["title"]}.mp4",
+                f"media/{post["filename"]}.mp4",
                 f"{post["title"]}"
             )        
         except Exception as e:
@@ -82,4 +85,4 @@ for val in no_of_accounts:
 
     
 
-update_last_run()
+# update_last_run()
