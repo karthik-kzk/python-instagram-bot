@@ -37,8 +37,8 @@ folder_path = "media/"
 createFolder(folder_path)
 delete_folder_contents(folder_path)
 
-no_of_accounts = [1,2,3]
-
+# no_of_accounts = [1,2,3]
+no_of_accounts = [2]
 for val in no_of_accounts:
     INSTAGRAM_USERNAME = os.getenv(f'INSTAGRAM_USERNAME_{val}')
     INSTAGRAM_PASSWORD = os.getenv(f'INSTAGRAM_PASSWORD_{val}')

@@ -22,3 +22,6 @@ session/
 top_posts_reddit.json
 errors.log
 cron.log
+credentials.json
+token.json
+*.mp4
